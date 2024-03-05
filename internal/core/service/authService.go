@@ -22,6 +22,21 @@ type _authService struct {
 	repo repository.AuthRepository
 }
 
+func (authService _authService) Auth(ctx context.Context, login, password string) (string, error) {
+
+	hash := generatePassword(password)
+
+	userName, err := authService.repo.GetUser(ctx, login, hash)
+
+	if err != nil {
+		slog.Error(err.Error())
+		return "", errors.New("не смогли создать пользователя")
+	}
+
+	return generateToken(userName)
+
+}
+
 func NewAuthService(repo repository.AuthRepository) service.AuthService {
 	return _authService{repo: repo}
 }

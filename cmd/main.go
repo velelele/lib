@@ -27,9 +27,11 @@ func main() {
 
 	postServ := service.NewPostService(manager.PostRepository)
 
-	router := http.InitRoutes(serv, postServ)
+	bookServ := service.NewBookService(manager.BookRepository)
 
-	if err := http2.ListenAndServe(":2222", router); err != nil {
+	router := http.InitRoutes(serv, postServ, bookServ)
+
+	if err := http2.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
 	}
 }

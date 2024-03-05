@@ -8,9 +8,16 @@ import (
 type AuthService interface {
 	Register(ctx context.Context, login, password string) (string, error)
 	GenerateToken(ctx context.Context, login, password string) (string, error)
+	Auth(ctx context.Context, login, password string) (string, error)
 }
 
 type PostService interface {
 	CreatePost(ctx context.Context, post model.Post) (int, error)
 	GetPost(ctx context.Context, postId int) (model.Post, error)
+}
+
+type BookService interface {
+	GetBook(ctx context.Context, bookId int) (model.Book, error)
+	SearchBooks(ctx context.Context, title, author, release string) ([]model.Book, error)
+	GetAllBooks(ctx context.Context) ([]model.Book, error)
 }
