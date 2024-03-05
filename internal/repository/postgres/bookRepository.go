@@ -100,3 +100,14 @@ func (bookRepository _bookRepository) GetAllBooks(ctx context.Context) ([]model.
 
 	return result, nil
 }
+
+func (bookRepository _bookRepository) AddBook(ctx context.Context, book model.Book) (int, error) {
+	var bookID int
+	err := bookRepository.db.PgConn.QueryRow(ctx,
+		`INSERT INTO books (title, author, body, release) VALUES ($1, $2, $3, $4) RETURNING id`,
+		book.Title, book.Author, book.Body, book.Release).Scan(&bookID)
+	if err != nil {
+		return 0, fmt.Errorf("ошибка при добавлении книги: %s", err.Error())
+	}
+	return bookID, nil
+}

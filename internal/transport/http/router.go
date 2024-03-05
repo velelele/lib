@@ -20,6 +20,7 @@ func InitRoutes(service service.AuthService, postService service.PostService, bo
 		api.GET("/post/:id", handler.GetPost(postService))
 		api.GET("/book", handler.SearchBooks(bookService))
 		api.GET("/books", handler.GetAllBooks(bookService))
+		api.POST("/book", handler.AddBook(bookService))
 
 	}
 	return router

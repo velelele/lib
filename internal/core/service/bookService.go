@@ -26,3 +26,7 @@ func (bookService _bookService) SearchBooks(ctx context.Context, title, author, 
 func (bookService _bookService) GetAllBooks(ctx context.Context) ([]model.Book, error) {
 	return bookService.repo.GetAllBooks(ctx)
 }
+
+func (bookService _bookService) AddBook(ctx context.Context, book model.Book) (int, error) {
+	return bookService.repo.AddBook(ctx, book)
+}
