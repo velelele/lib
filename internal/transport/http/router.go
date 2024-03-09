@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRoutes(service service.AuthService, postService service.PostService, bookService service.BookService) *gin.Engine {
+func InitRoutes(service service.AuthService, postService service.PostService, bookService service.BookService, adminService service.AdminService) *gin.Engine {
 	router := gin.Default()
 
 	router.POST("/register", handler.RegisterUser(service))
@@ -20,7 +20,7 @@ func InitRoutes(service service.AuthService, postService service.PostService, bo
 		api.GET("/post/:id", handler.GetPost(postService))
 		api.GET("/book", handler.SearchBooks(bookService))
 		api.GET("/books", handler.GetAllBooks(bookService))
-		api.POST("/book", handler.AddBook(bookService))
+		api.POST("/book", handler.AddBook(adminService))
 
 	}
 	return router

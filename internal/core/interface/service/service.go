@@ -20,5 +20,8 @@ type BookService interface {
 	GetBook(ctx context.Context, bookId int) (model.Book, error)
 	SearchBooks(ctx context.Context, title, author, release string) ([]model.Book, error)
 	GetAllBooks(ctx context.Context) ([]model.Book, error)
-	AddBook(ctx context.Context, book model.Book) (int, error)
+}
+
+type AdminService interface {
+	AddBook(ctx context.Context, book model.Book, login string) (int, error)
 }

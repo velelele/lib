@@ -29,7 +29,9 @@ func main() {
 
 	bookServ := service.NewBookService(manager.BookRepository)
 
-	router := http.InitRoutes(serv, postServ, bookServ)
+	admServ := service.NewAdminService(manager.AdminRepository)
+
+	router := http.InitRoutes(serv, postServ, bookServ, admServ)
 
 	if err := http2.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
