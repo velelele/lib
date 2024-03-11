@@ -11,6 +11,7 @@ type RepositoryManager struct {
 	repository.PostRepository
 	repository.BookRepository
 	repository.AdminRepository
+	repository.FavoriteRepository
 }
 
 func NewRepositoryManager(db *db.Db) RepositoryManager {
@@ -19,5 +20,6 @@ func NewRepositoryManager(db *db.Db) RepositoryManager {
 		postgres.NewPostRepo(db),
 		postgres.NewBookRepo(db),
 		postgres.NewAdminRepo(db),
+		postgres.NewFavoriteRepo(db),
 	}
 }

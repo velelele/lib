@@ -25,3 +25,8 @@ type BookService interface {
 type AdminService interface {
 	AddBook(ctx context.Context, book model.Book, login string) (int, error)
 }
+
+type FavoriteService interface {
+	AddFavoriteBook(ctx context.Context, login string, bookID int) error
+	GetFavoriteBooks(ctx context.Context, login string) ([]model.Book, error)
+}

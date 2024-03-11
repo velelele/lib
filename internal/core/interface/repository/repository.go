@@ -25,3 +25,8 @@ type AdminRepository interface {
 	GetAdmin(ctx context.Context, login string) (bool, error)
 	AddBook(ctx context.Context, book model.Book) (int, error)
 }
+
+type FavoriteRepository interface {
+	AddFavoriteBook(ctx context.Context, login string, bookID int) error
+	GetFavoriteBooks(ctx context.Context, login string) ([]model.Book, error)
+}

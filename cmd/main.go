@@ -31,7 +31,9 @@ func main() {
 
 	admServ := service.NewAdminService(manager.AdminRepository)
 
-	router := http.InitRoutes(serv, postServ, bookServ, admServ)
+	favServ := service.NewFavoriteService(manager.FavoriteRepository)
+
+	router := http.InitRoutes(serv, postServ, bookServ, admServ, favServ)
 
 	if err := http2.ListenAndServe(":8080", router); err != nil {
 		log.Fatal(err)
